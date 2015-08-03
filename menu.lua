@@ -30,9 +30,9 @@ end
 function scene:create( event )
 	local sceneGroup = self.view
     --Text
-    local myTextObject = display.newText( "TARGO TAP", display.contentWidth/2, display.contentHeight/6, native.systemFont, 60 )
+    local myTextObject = display.newText( "TARGO TAP", display.contentWidth/2, display.contentHeight/6, "Calibri", 60 )
     myTextObject:setFillColor(.27, .651, 60)
-    local differentText = display.newText( "Fresh!", display.contentWidth/2, display.contentHeight/4.5, native.systemFont, 40 )
+    local differentText = display.newText( "Fresh!", display.contentWidth/2, display.contentHeight/4.5, "Calibri", 40 )
     differentText:setFillColor(.27, .651, 60)
 
     -- Create the widget
@@ -45,7 +45,7 @@ function scene:create( event )
         height = display.contentHeight/3,
         cornerRadius = 2,
         labelColor = { default = { .031, .651, .094, 1 }, over = { .616, .82, .58, 1} },
-        fillColor = { default={ .616, .82, .58, 1 }, over={ .031, .651, .094, 0.4 } },
+        fillColor = { default={ .51, .941, .51, 1 }, over={ .616, .82, .58, 0.4 } },
         strokeColor = { default={ .031, .651, .094, 1 }, over={ .616, .82, .58, 1 } },
         strokeWidth = 1,
         fontSize = 50
