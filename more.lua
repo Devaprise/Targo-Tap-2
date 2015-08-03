@@ -3,7 +3,7 @@
 -- Targo Tap Corona Version
 -- ====================================================================
 --
--- File: menu.lua
+-- File: more.lua
 --
 -- Version 0.1
 --
@@ -18,25 +18,18 @@ local composer = require "composer"
 local scene = composer.newScene()
 
 -- forward declarations and other locals
-local playBtn
-local optionsBtn
-local moreBtn
 
--- 'onRelease' event listener for playBtn
+--[[
 local function onPlayBtnRelease()
 	-- go to game.lua scene
 	composer.gotoScene( "game", "fade", 250 )
 	return true	-- indicates successful touch
 end
+]]--
 
-local function onOptionsBtnRelease() 
-	composer.gotoScene( "options", "fade", 100 )
-	return true
-end;
-
-local function onMoreBtnRelease()
-	composer.gotoScene( "more", "fade", 100 )
-	return true
+local function onBackBtnRelease() 
+    composer.gotoScene( "menu", "fade", 100 )
+    return true
 end
 
 function scene:create( event )
@@ -44,66 +37,26 @@ function scene:create( event )
     --Text
     local myTextObject = display.newText( "TARGO TAP", display.contentWidth/2, display.contentHeight/6, "calibri", 120 )
     myTextObject:setFillColor(0, 166/255, 156/255)--rgb(0, 166, 156)
-    local differentText = display.newText( "Fresh!", display.contentWidth/2, display.contentHeight/4.5, "calibri", 60 )
-    differentText:setFillColor(0, 146/255, 136/255)
 
-    -- Create the widget
-    playBtn = widget.newButton {
-        label = "Play Targo Tap",
-        onRelease = onPlayBtnRelease,
+    backBtn = widget.newButton {
+        label = "Back",
+        onRelease = onBackBtnRelease,
         --properties for a rectangle button...
         shape = "Rect",
         width = display.contentWidth,
-        height = display.contentHeight/3,
-        cornerRadius = 0,
+        height = display.contentHeight/4,
+        cornerRadius = 0,--rgb(148, 210, 206) --rgb(0, 165, 155)
         labelColor = { default = { .031, .651, .094, 1 }, over = { .000, .551, .000, 1} },
         fillColor = { default={ .616, .82, .58, 1 }, over={ .031, .651, .094, 0.4 } },
         fontSize = 70
     }
 
-    optionsBtn = widget.newButton {
-        label = "Options",
-        onRelease = onOptionsBtnRelease,--change
-        --properties for a rectangle button...
-        shape = "Rect",
-        width = display.contentWidth/2,
-        height = display.contentHeight/3,
-        cornerRadius = 0,--rgb(148, 210, 206) --rgb(0, 165, 155)
-        labelColor = { default = { 0, .647, .608, 1 }, over = { 0, .547, .508, 1 } },
-        fillColor = { default={ .580, .824, .808, 1 }, over={ .480, .724, .708, 1 } },
-        fontSize = 70
-    }
-
-    moreBtn = widget.newButton {
-        label = "More",
-        onRelease = onMoreBtnRelease,--change
-        --properties for a rectangle button...
-        shape = "Rect",
-        width = display.contentWidth/2,
-        height = display.contentHeight/3,
-        cornerRadius = 0,--rgb(255, 178, 123) rgb(239, 113, 25)
-        labelColor = { default = { 239/255, 113/255, 25/255, 1 }, over = { 219/255, 93/255, 5/255, 1} },
-        fillColor = { default={ 255/255, 158/255, 123/255, 1 }, over={ 235/255, 138/255, 103/255, 1 } },
-        fontSize = 70
-    }
-
     -- Center the button
-    playBtn.x = display.contentCenterX
-    playBtn.y = display.contentCenterY
-
-    -- Place btn below
-    optionsBtn.x = display.contentCenterX - (display.contentWidth/4);
-    optionsBtn.y = display.contentCenterY + (display.contentHeight/3);
-    
-    -- Place btn below
-    moreBtn.x = display.contentCenterX + (display.contentWidth/4);
-    moreBtn.y = display.contentCenterY + (display.contentHeight/3);
+    backBtn.x = display.contentCenterX
+    backBtn.y = display.contentCenterY + (display.contentHeight/2.5);
 
     sceneGroup:insert( myTextObject )
-	sceneGroup:insert( differentText )
-	sceneGroup:insert( playBtn )
-	sceneGroup:insert( optionsBtn )
-	sceneGroup:insert( moreBtn )
+	sceneGroup:insert( backBtn )
 end
 
 function scene:show( event )
