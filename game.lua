@@ -10,8 +10,22 @@
 --
 --*********************************************************************************************
 
+-- define widget
+local widget = require("widget");
+
 local composer = require( "composer" )
 local scene = composer.newScene()
+
+local Btn1
+local Btn2
+local Btn3
+local Btn4
+
+local function onBtnRelease()
+	-- go to game.lua scene
+	print( "You pressed the button!" )
+	return true	-- indicates successful touch
+end
 
 function scene:create( event )
 
@@ -22,10 +36,80 @@ function scene:create( event )
 
 	local sceneGroup = self.view
     
-    local myTextObject = display.newText( "TARGO TAP", display.contentWidth/2, display.contentHeight/6, native.systemFont, 60 )
-    myTextObject:setFillColor(.27, .651, 60)
+    local timeText = display.newText( "TIME:", display.contentWidth/2.3, display.contentHeight/6, native.systemFont, 60 )
+    timeText:setFillColor(.27, .651, 60)
+    local scoreText = display.newText( "SCORE:", display.contentWidth/2.3, display.contentHeight/4.5, native.systemFont, 40 )
+    scoreText:setFillColor(.27, .651, 60)
     
-    sceneGroup:insert( myTextObject )
+    Btn1 = widget.newButton {
+        label = "1",
+        onRelease = onBtnRelease,
+        --properties for a rectangle button...
+        shape = "Rect",
+        width = display.contentWidth/2,
+        height = display.contentHeight/4,
+        cornerRadius = 0,
+        labelColor = { default = { 8/255, 19/255, 166/255, 1 }, over = { 149/255, 148/255, 209/255, 1} },
+        fillColor = { default={ 149/255, 148/255, 209/255, 1 }, over={  8/255, 19/255, 166/255, 0.4 } },
+        fontSize = 70
+    }
+    Btn2 = widget.newButton {
+        label = "2",
+        onRelease = onBtnRelease,
+        --properties for a rectangle button...
+        shape = "Rect",
+        width = display.contentWidth/2,
+        height = display.contentHeight/4,
+        cornerRadius = 0,
+        labelColor = { default = { 166/255, 8/255, 8/255, 1 }, over = { 207/255, 147/255, 147/255, 1} },
+        fillColor = { default={ 207/255, 147/255, 147/255, 1 }, over={ 166/255, 8/255, 8/255, 0.4 } },
+        fontSize = 70
+    }
+    Btn3 = widget.newButton {
+        label = "3",
+        onRelease = onBtnRelease,
+        --properties for a rectangle button...
+        shape = "Rect",
+        width = display.contentWidth/2,
+        height = display.contentHeight/4,
+        cornerRadius = 0,
+        labelColor = { default = { 166/255, 8/255, 8/255, 1 }, over = { 207/255, 147/255, 147/255, 1} },
+        fillColor = { default={ 207/255, 147/255, 147/255, 1 }, over={ 166/255, 8/255, 8/255, 0.4 } },
+        fontSize = 70
+    }
+    Btn4 = widget.newButton {
+        label = "4",
+        onRelease = onBtnRelease,
+        --properties for a rectangle button...
+        shape = "Rect",
+        width = display.contentWidth/2,
+        height = display.contentHeight/4,
+        cornerRadius = 0,
+        labelColor = { default = { 8/255, 19/255, 166/255, 1 }, over = { 149/255, 148/255, 209/255, 1} },
+        fillColor = { default={ 149/255, 148/255, 209/255, 1 }, over={  8/255, 19/255, 166/255, 0.4 } },
+        fontSize = 70
+    }
+    local numberRect = display.newRoundedRect( display.contentCenterX, display.contentCenterY+50, display.contentWidth/4, display.contentHeight/7, 25 )
+    
+    Btn1.x = display.contentCenterX - (display.contentWidth/4);
+    Btn1.y = display.contentCenterY - (display.contentHeight/12);
+    
+    Btn2.x = display.contentCenterX + (display.contentWidth/4);
+    Btn2.y = display.contentCenterY - (display.contentHeight/12);
+    
+    Btn3.x = display.contentCenterX - (display.contentWidth/4);
+    Btn3.y = display.contentCenterY + (display.contentHeight/6);
+    
+    Btn4.x = display.contentCenterX + (display.contentWidth/4);
+    Btn4.y = display.contentCenterY + (display.contentHeight/6);
+    
+    sceneGroup:insert( timeText )
+    sceneGroup:insert( scoreText )
+    sceneGroup:insert( Btn1 )
+    sceneGroup:insert( Btn2 )
+    sceneGroup:insert( Btn3 )
+    sceneGroup:insert( Btn4 )
+    sceneGroup:insert( numberRect )
 end
 
 
@@ -66,6 +150,22 @@ function scene:destroy( event )
 	-- INSERT code here to cleanup the scene
 	-- e.g. remove display objects, remove touch listeners, save state, etc.
 	local sceneGroup = self.view
+    if Btn1 then
+		Btn1:removeSelf()	-- widgets must be manually removed
+		Btn1 = nil
+	end
+    if Btn2 then
+		Btn2:removeSelf()	-- widgets must be manually removed
+		Btn2 = nil
+	end
+    if Btn3 then
+		Btn3:removeSelf()	-- widgets must be manually removed
+		Btn3 = nil
+	end
+    if Btn4 then
+        Btn4:removeSelf()
+        Btn4 = nil
+    end
 end
 
 ---------------------------------------------------------------------------------

@@ -20,4 +20,4 @@ local composer = require "composer"
 display.setDefault("background", .847, .871, .749) --Remember to change 
 
 -- load menu screen
-composer.gotoScene( "menu" )
+composer.gotoScene( "game" )
