@@ -30,12 +30,12 @@ local function onPlayBtnRelease()
 end
 
 local function onOptionsBtnRelease() 
-	composer.gotoScene( "options", "fade", 100 )
+	composer.gotoScene( "options", "fade", 150 )
 	return true
 end;
 
 local function onMoreBtnRelease()
-	composer.gotoScene( "more", "fade", 100 )
+	composer.gotoScene( "more", "fade", 150 )
 	return true
 end
 
@@ -145,6 +145,14 @@ function scene:destroy( event )
 	if playBtn then
 		playBtn:removeSelf()	-- widgets must be manually removed
 		playBtn = nil
+	end
+    if optionsBtn then
+		optionsBtn:removeSelf()	-- widgets must be manually removed
+		optionsBtn = nil
+	end
+    if moreBtn then
+		moreBtn:removeSelf()	-- widgets must be manually removed
+		moreBtn = nil
 	end
 end
 
