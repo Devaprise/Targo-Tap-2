@@ -21,9 +21,14 @@ local Btn2
 local Btn3
 local Btn4
 
+local numberText = display.newText( "0", display.contentCenterX, display.contentCenterY+50, native.systemFont, 100 )
+numberText:setFillColor(0, 0, 0)
+numberText.text = ( math.random(1, 4) )
+
 local function onBtnRelease()
 	-- go to game.lua scene
-	print( "You pressed the button!" )
+	print( "You pressed Button!" )
+    numberText.text = ( math.random(1, 4) )
 	return true	-- indicates successful touch
 end
 
@@ -110,6 +115,7 @@ function scene:create( event )
     sceneGroup:insert( Btn3 )
     sceneGroup:insert( Btn4 )
     sceneGroup:insert( numberRect )
+    sceneGroup:insert( numberText )
 end
 
 
