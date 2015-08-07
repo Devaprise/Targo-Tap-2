@@ -21,7 +21,7 @@ local Btn2
 local Btn3
 local Btn4
 
-local numberText = display.newText( "0", display.contentCenterX, display.contentCenterY+50, native.systemFont, 100 )
+local numberText = display.newText( 0, display.contentCenterX, display.contentCenterY+50, native.systemFont, 100 )
 numberText:setFillColor(0, 0, 0)
 numberText.text = ( math.random(1, 4) )
 
@@ -130,6 +130,22 @@ function scene:show( event )
 		-- 
 		-- INSERT code here to make the scene come alive
 		-- e.g. start timers, begin animation, play audio, etc.
+        local timeLimit = 20
+        timeLeft = display.newText(timeLimit, display.contentWidth/1.7, display.contentHeight/6, native.systemFontBold, 65)
+        timeLeft:setFillColor(.27, .651, 60)
+
+        local function timerDown()
+           timeLimit = timeLimit-1
+           timeLeft.text = timeLimit
+                
+            if(timeLimit==10)then
+                timeLeft:setFillColor(255,0,0)
+            elseif(timeLimit==0)then
+                print("Time Out") -- or do your code for time out
+                composer.gotoScene( "gameover", "fade", 250 )
+            end
+          end
+        timer.performWithDelay(1000,timerDown,timeLimit)
 	end
 end
 
