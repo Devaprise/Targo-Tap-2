@@ -146,6 +146,9 @@ function scene:show( event )
             end
           end
         timer.performWithDelay(1000,timerDown,timeLimit)
+        
+        
+        sceneGroup:insert( timeLeft )
 	end
 end
 
@@ -172,6 +175,7 @@ function scene:destroy( event )
 	-- INSERT code here to cleanup the scene
 	-- e.g. remove display objects, remove touch listeners, save state, etc.
 	local sceneGroup = self.view
+    
     if Btn1 then
 		Btn1:removeSelf()	-- widgets must be manually removed
 		Btn1 = nil
