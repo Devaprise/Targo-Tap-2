@@ -21,6 +21,7 @@ local Btn2
 local Btn3
 local Btn4
 
+
 function scene:create( event )
 
 	-- Called when the scene's view does not exist.
@@ -41,12 +42,6 @@ function scene:create( event )
     local scoreNumber = display.newText( 0, display.contentWidth/1.7, display.contentHeight/4.5, native.systemFont, 60 )
     scoreNumber:setFillColor(.27, .651, 60)
 
-    local function onBtnRelease()
-        -- go to game.lua scene
-        print( "You pressed Button!" )
-        numberText.text = ( math.random(1, 4) )
-        return true	-- indicates successful touch
-    end
     local function check()
         if Btn1:getLabel() == numberText.text then
             print("You won Da prize boii!")
@@ -86,6 +81,39 @@ function scene:create( event )
             print("sike!! that's ze wrong numero!")
             return false
         end
+    end
+    
+    local function BtnSwitch()
+        if numberText.text == "4" then
+            Btn1:setLabel("1")
+            Btn2:setLabel("2")
+            Btn3:setLabel("3")
+            Btn4:setLabel("4")
+        elseif numberText.text == "1" then
+            Btn1:setLabel("4")
+            Btn2:setLabel("1")
+            Btn3:setLabel("2")
+            Btn4:setLabel("3")
+        elseif numberText.text == "2" then
+            Btn1:setLabel("3")
+            Btn2:setLabel("4")
+            Btn3:setLabel("1")
+            Btn4:setLabel("2")
+        elseif numberText.text == "3"  then
+            Btn1:setLabel("2")
+            Btn2:setLabel("3")
+            Btn3:setLabel("4")
+            Btn4:setLabel("1")
+        else
+            print("LOLOLOLLOL FAIL")
+        end
+    end
+    local function onBtnRelease()
+        -- go to game.lua scene
+        print( "You pressed Button!" )
+        numberText.text = ( math.random(1, 4) )
+        BtnSwitch()
+        return true	-- indicates successful touch
     end
     Btn1 = widget.newButton {
         label = "1",
@@ -152,7 +180,7 @@ function scene:create( event )
     
     Btn4.x = display.contentCenterX + (display.contentWidth/4);
     Btn4.y = display.contentCenterY + (display.contentHeight/6);
-            
+    
     sceneGroup:insert( timeText )
     sceneGroup:insert( scoreText )
     sceneGroup:insert( scoreNumber )
