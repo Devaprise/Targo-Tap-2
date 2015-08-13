@@ -19,13 +19,11 @@ local scene = composer.newScene()
 
 -- forward declarations and other locals
 
---[[
-local function onPlayBtnRelease()
-	-- go to game.lua scene
-	composer.gotoScene( "game", "fade", 250 )
+
+local function onMusicBtnRelease()
+    print("Music coming soon!")
 	return true	-- indicates successful touch
 end
-]]--
 
 local function onBackBtnRelease() 
     composer.gotoScene( "menu", "fade", 100 )
@@ -37,7 +35,8 @@ function scene:create( event )
     --Text
     local myTextObject = display.newText( "TARGO TAP", display.contentWidth/2, display.contentHeight/6, "calibri", 120 )
     myTextObject:setFillColor(0, 166/255, 156/255)--rgb(0, 166, 156)
-
+    local moarTextObject = display.newText( "OPTIONS", display.contentWidth/2, display.contentHeight/4, "calibri", 60 )
+    moarTextObject:setFillColor(0, 166/255, 156/255)
     backBtn = widget.newButton {
         label = "Back",
         onRelease = onBackBtnRelease,
@@ -50,13 +49,29 @@ function scene:create( event )
         fillColor = { default={ .616, .82, .58, 1 }, over={ .031, .651, .094, 0.4 } },
         fontSize = 70
     }
-
+    musicBtn = widget.newButton {
+        label = "Enable Music",
+        onRelease = onMusicBtnRelease,
+        --properties for a rectangle button...
+        shape = "Rect",
+        width = display.contentWidth,
+        height = display.contentHeight/5,
+        cornerRadius = 0,--rgb(148, 210, 206) --rgb(0, 165, 155)
+        labelColor = { default = { 255,0,255, 1 }, over = { 128/255,0,128/255, 1} },
+        fillColor = { default={ 128/255,0,128/255, 1 }, over={ 255,0,255, 0.4 } },
+        fontSize = 70
+    }
     -- Center the button
     backBtn.x = display.contentCenterX
-    backBtn.y = display.contentCenterY + (display.contentHeight/2.5);
-
+    backBtn.y = display.contentCenterY + (display.contentHeight/2.5)
+    
+    musicBtn.x = display.contentCenterX
+    musicBtn.y = display.contentCenterY
+    
     sceneGroup:insert( myTextObject )
+    sceneGroup:insert( moarTextObject )
 	sceneGroup:insert( backBtn )
+    sceneGroup:insert( musicBtn )
 end
 
 function scene:show( event )
