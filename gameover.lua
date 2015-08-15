@@ -25,6 +25,8 @@ end
 function scene:create( event )
 	local sceneGroup = self.view
     local gameoverText = display.newText("GAME OVER", display.contentCenterX, display.contentHeight/3, native.systemFontBold, 65)
+    
+    local scoreText = display.newText("YOUR SCORE:", display.contentCenterX, display.contentHeight/2.5, native.systemFontBold, 60)
     backBtn = widget.newButton {
         label = "Back",
         onRelease = onBackBtnRelease,
@@ -44,6 +46,7 @@ function scene:create( event )
     
     sceneGroup:insert( backBtn )
     sceneGroup:insert( gameoverText )
+    sceneGroup:insert( scoreText ) 
 end
 
 function scene:show( event )
