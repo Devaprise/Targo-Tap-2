@@ -11,7 +11,9 @@
 --*********************************************************************************************
 
 -- define widget
-local widget = require("widget");
+local widget = require("widget")
+
+local json = require "json"
 
 local composer = require( "composer" )
 local scene = composer.newScene()
@@ -21,7 +23,7 @@ local Btn2
 local Btn3
 local Btn4
 
-
+--json doesn't work on corona anymore WTF??!!
 function scene:create( event )
 
 	-- Called when the scene's view does not exist.
@@ -84,12 +86,12 @@ function scene:create( event )
     end
     
     local function BtnSwitch()
-        if numberText.text == "4" then
+        if numberText.text == "3" then
             Btn1:setLabel("1")
             Btn2:setLabel("2")
             Btn3:setLabel("3")
             Btn4:setLabel("4")
-        elseif numberText.text == "1" then
+        elseif numberText.text == "4" then
             Btn1:setLabel("4")
             Btn2:setLabel("1")
             Btn3:setLabel("2")
@@ -99,7 +101,7 @@ function scene:create( event )
             Btn2:setLabel("4")
             Btn3:setLabel("1")
             Btn4:setLabel("2")
-        elseif numberText.text == "3"  then
+        elseif numberText.text == "1"  then
             Btn1:setLabel("2")
             Btn2:setLabel("3")
             Btn3:setLabel("4")

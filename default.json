@@ -1,0 +1,11 @@
+{
+    "musicenabled": true, 
+    "timeleft": 20,
+    "score": 0,
+    "highScore": 0,
+    "default": {
+        "musicenabled": true, 
+        "timeleft": 20,
+        "score": 0
+    }
+}
